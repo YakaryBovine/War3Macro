@@ -1,4 +1,4 @@
-﻿namespace AzerothWarsCSharp.Source.Libraries
+﻿namespace War3Macro.Source.Libraries
 {
   public enum QuestProgress
   {

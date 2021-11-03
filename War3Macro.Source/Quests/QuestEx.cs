@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using static War3Api.Common;
 
-namespace AzerothWarsCSharp.Source.Libraries
+namespace War3Macro.Source.Libraries
 {
   public class QuestEx
   {

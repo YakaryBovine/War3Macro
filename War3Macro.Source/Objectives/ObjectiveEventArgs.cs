@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AzerothWarsCSharp.Source.Libraries
+namespace War3Macro.Source.Libraries
 {
   public class ObjectiveEventArgs : EventArgs
   {

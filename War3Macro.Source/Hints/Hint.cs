@@ -2,7 +2,7 @@
 using WCSharp.Events;
 using static War3Api.Common;
 
-namespace AzerothWarsCSharp.Source.Libraries
+namespace War3Macro.Source.Libraries
 {
   class Hint
   {

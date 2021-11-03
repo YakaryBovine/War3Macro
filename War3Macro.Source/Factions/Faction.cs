@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using static War3Api.Common;
 using static War3Api.Blizzard;
 
-namespace AzerothWarsCSharp.Source.Libraries
+namespace War3Macro.Source.Libraries
 {
   /// <summary>
   /// A collection of object limits, object limits, quests, etc.

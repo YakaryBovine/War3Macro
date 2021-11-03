@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AzerothWarsCSharp.Common.Constants;
+using War3Macro.Common.Constants;
 using static War3Api.Common;
 using static War3Api.Blizzard;
 
-namespace AzerothWarsCSharp.Source.Libraries
+namespace War3Macro.Source.Libraries
 {
   public class LegendDiesEventArgs : EventArgs
   {

@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AzerothWarsCSharp.Source.Libraries
+namespace War3Macro.Source.Libraries
 { 
-  public class TeamEventArgs : EventArgs
-  {
-    public Team Team;
-  }
-
   public class Team
   {
     public Team(string name)

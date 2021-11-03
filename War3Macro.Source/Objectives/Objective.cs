@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using WCSharp.Shared.Data;
-namespace AzerothWarsCSharp.Source.Libraries
+namespace War3Macro.Source.Libraries
 {
   /// <summary>
   /// A known objective that can be completed by a particular Faction.
