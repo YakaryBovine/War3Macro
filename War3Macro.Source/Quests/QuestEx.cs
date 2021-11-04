@@ -1,36 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using static War3Api.Common;
+﻿using System.Collections.Generic;
+using War3Macro.Objectives;
 
-namespace War3Macro.Source.Libraries
+namespace War3Macro.Source.Quests
 {
-  public class QuestEx
+  public sealed class QuestEx
   {
-    public Action<Faction> OnDiscover;
-    public Action<Faction> OnComplete;
-    public Action<Faction> OnFail;
-    public Action<Faction> OnAdd;
+    private readonly List<Objective> _objectives = new();
+    private readonly List<Outcome> _rewards = new();
+    private readonly List<Outcome> _penalties = new();
 
-    public QuestEx(Faction holder)
+    public string Title { get; set; }
+    public string Flavour { get; set; }
+    public string Icon { get; set; }
+    public string CompletionPopup { get; set; }
+    public string CompletionDescription { get; set; }
+    public bool Global { get; set; } = true;
+    public int Research { get; set; }
+
+    public void AddObjective(Objective objective)
     {
-      throw new NotImplementedException();
+      _objectives.Add(objective);
     }
 
-    public string Title;
-    public string Icon;
-    public bool Global;
-    public string CompletionDescription;
-    public string FailureDescription;
-    public string CompletionPopup;
-    public string FailurePopup;
-    public string Description;
-    public bool ProgressLocked;
-    public QuestProgress Progress;
-    public Faction Owner;
-
-    public Message MessageByProgress(QuestProgress progress)
+    public void RemoveObjective(Objective objective)
     {
-      throw new NotImplementedException();
+      _objectives.Remove(objective);
+    }
+
+    public void AddReward(Outcome reward)
+    {
+      _rewards.Add(reward);
+    }
+
+    public void RemoveReward(Outcome reward)
+    {
+      _rewards.Remove(reward);
+    }
+
+    public void AddPenalty(Outcome penalty)
+    {
+      _penalties.Add(penalty);
+    }
+
+    public void RemovePenalty(Outcome reward)
+    {
+      _penalties.Add(reward);
     }
   }
 }

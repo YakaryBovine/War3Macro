@@ -1,4 +1,4 @@
-﻿namespace War3Macro.Source.Libraries
+﻿namespace War3Macro.Source.Quests
 {
   public enum QuestProgress
   {

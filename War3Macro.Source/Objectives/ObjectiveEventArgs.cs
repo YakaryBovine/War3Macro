@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace War3Macro.Source.Libraries
+namespace War3Macro.Objectives
 {
   public class ObjectiveEventArgs : EventArgs
   {

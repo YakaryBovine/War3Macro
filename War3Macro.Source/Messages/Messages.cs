@@ -1,4 +1,4 @@
-﻿namespace War3Macro.Source.Teams
+﻿namespace War3Macro.Messages
 {
   public class Message
   {

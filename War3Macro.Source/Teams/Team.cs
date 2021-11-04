@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using War3Macro.Factions;
 
-namespace War3Macro.Source.Libraries
+namespace War3Macro.Teams
 { 
   public class Team
   {

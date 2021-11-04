@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using WCSharp.Shared.Data;
-namespace War3Macro.Source.Libraries
+using System.Drawing;
+
+namespace War3Macro.Objectives
 {
   /// <summary>
   /// A known objective that can be completed by a particular Faction.
@@ -9,19 +10,7 @@ namespace War3Macro.Source.Libraries
   /// </summary>
   public abstract class Objective
   {
-    public static IEnumerable<Objective> All 
-    { 
-      get 
-      {
-        return _all;
-      }
-    }
-
-    public Objective(Faction holder)
-    {
-      Holder = holder;
-      _all.Add(this);
-    }
+    public static event EventHandler<ObjectiveEventArgs> Created;
 
     public QuestProgress Progress { get; protected set; }
 
@@ -32,7 +21,10 @@ namespace War3Macro.Source.Libraries
     public event EventHandler<ObjectiveEventArgs> Destroyed;
     public event EventHandler<ObjectiveEventArgs> FactionChanged;
     public event EventHandler<ObjectiveEventArgs> TeamChanged;
-    public static event EventHandler<ObjectiveEventArgs> Created;
+    /// <summary>
+    /// Raised when the nature of the objective has changed.
+    /// </summary>
+    public abstract event EventHandler<ObjectiveEventArgs> TargetChanged;
 
     public Action<Faction> OnDiscover;
     public Action<Faction> OnComplete;
@@ -47,7 +39,7 @@ namespace War3Macro.Source.Libraries
     /// <summary>
     /// Where on the minimap this objective should be rendered.
     /// </summary>
-    public abstract Point Location { get; }
+    public abstract PointF Location { get; }
 
     /// <summary>
     /// A path to a model used to render this QuestObjective.
@@ -55,12 +47,9 @@ namespace War3Macro.Source.Libraries
     public string MinimapIconPath { get; } = "MinimapQuestObjectivePrimary";
 
     /// <summary>
-    /// The Faction that can affect the progress of this QuestObjective through some kind of action,
-    /// and be rewarded in some way when this QuestObjective (or its parent) is completed.
+    /// Verbal instructions as to how this objective can be completed.
     /// </summary>
-    public Faction Holder { get; }
-
-    public string Description { get; protected set; }
+    public abstract string Description { get; protected set; }
 
     private static readonly List<Objective> _all = new();
   }

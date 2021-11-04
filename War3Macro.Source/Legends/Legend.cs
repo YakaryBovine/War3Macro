@@ -7,7 +7,7 @@ using War3Macro.Common.Constants;
 using static War3Api.Common;
 using static War3Api.Blizzard;
 
-namespace War3Macro.Source.Libraries
+namespace War3Macro.Libraries
 {
   public class LegendDiesEventArgs : EventArgs
   {

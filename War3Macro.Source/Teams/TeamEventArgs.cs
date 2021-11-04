@@ -1,7 +1,7 @@
-﻿using War3Macro.Source.Libraries;
+﻿using War3Macro.Libraries;
 using System;
 
-namespace War3Macro.Source.Teams
+namespace War3Macro.Teams
 {
   public class TeamEventArgs : EventArgs
   {

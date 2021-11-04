@@ -1,6 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace War3Macro.Source.Tests
+namespace War3Macro.Tests
 {
   [TestClass]
   public class UnitTest1

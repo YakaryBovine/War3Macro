@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using static War3Api.Common;
 using static War3Api.Blizzard;
+using War3Macro.Teams;
+using War3Macro.Source.Quests;
 
-namespace War3Macro.Source.Libraries
+namespace War3Macro.Source.Factions
 {
   /// <summary>
   /// A collection of object limits, object limits, quests, etc.
@@ -11,6 +13,8 @@ namespace War3Macro.Source.Libraries
   /// </summary>
   public class Faction
   {
+    private readonly List<QuestEx> _quests = new();
+
     public static int UNLIMITED { get; } = 200;
 
     public event EventHandler<FactionTeamChangedEventArgs> TeamChanged;
@@ -234,6 +238,16 @@ namespace War3Macro.Source.Libraries
       }
     }
     private player _player;
+
+    public void AddQuest(QuestEx quest)
+    {
+      _quests.Add(quest);
+    }
+
+    public void RemoveQuest(QuestEx quest)
+    {
+      _quests.Remove(quest);
+    }
 
     /// <summary>
     /// Quest that pops up for this Faction early on as an introduction.
