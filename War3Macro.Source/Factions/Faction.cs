@@ -13,6 +13,15 @@ namespace War3Macro.Source.Factions
   /// </summary>
   public class Faction
   {
+    private double _excessGold = 0;
+    private Team _team;
+    private double _income = 0;
+    private int _weight;
+    private string _name;
+    private string _icon;
+    private static readonly HashSet<Faction> _all = new();
+    private Dictionary<int, int> _objectLimits = new();
+    private Dictionary<int, int> _objectLevels = new();
     private readonly List<QuestEx> _quests = new();
 
     public static int UNLIMITED { get; } = 200;
@@ -26,21 +35,6 @@ namespace War3Macro.Source.Factions
     public event EventHandler<FactionEventArgs> NameChanged;
     public event EventHandler<FactionEventArgs> IconChanged;
     public static event EventHandler<FactionEventArgs> FactionCreated;
-
-    public Faction(
-      string name, playercolor playercolor, string prefixColor, string icon, int weight,
-      Dictionary<int, int> objectLevels = null, Dictionary<int, int> objectLimits = null)
-    {
-      Name = name;
-      PlayerColor = playercolor;
-      PrefixColor = prefixColor;
-      Icon = icon;
-      Weight = weight;
-      _objectLimits = objectLimits ?? _objectLimits;
-      _objectLevels = objectLevels ?? _objectLevels;
-      _all.Add(this);
-      FactionCreated?.Invoke(this, new FactionEventArgs(this));
-    }
 
     /// <summary>
     /// Returns the Faction being controlled by this player.
@@ -349,14 +343,9 @@ namespace War3Macro.Source.Factions
       throw new NotImplementedException();
     }
 
-    private double _excessGold = 0;
-    private Team _team;
-    private double _income = 0;
-    private int _weight;
-    private string _name;
-    private string _icon;
-    private static readonly HashSet<Faction> _all = new();
-    private Dictionary<int, int> _objectLimits = new();
-    private Dictionary<int, int> _objectLevels = new();
+    public Faction()
+    {
+      FactionCreated?.Invoke(this, new FactionEventArgs(this));
+    }
   }
 }

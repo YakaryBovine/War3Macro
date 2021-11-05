@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using War3Macro.Factions;
+using War3Macro.Source.Factions;
 using War3Macro.ControlPoints;
 using static War3Api.Common;
 

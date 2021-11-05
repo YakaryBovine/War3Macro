@@ -1,4 +1,4 @@
-﻿using War3Macro.Factions;
+﻿using War3Macro.Source.Factions;
 using static War3Api.Common;
 
 namespace War3Macro.Source.Commands

@@ -1,15 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using War3Macro.Factions;
+using War3Macro.Source.Factions;
 
 namespace War3Macro.Teams
 { 
+  /// <summary>
+  /// A group of Factions which are allied to eachother.
+  /// </summary>
   public class Team
   {
-    public Team(string name)
+    private static readonly List<Team> _allTeams = new();
+    private readonly List<Faction> _factions = new();
+    private readonly List<Faction> _invitees = new();
+
+    public string Name { get; }
+
+    public EventHandler<TeamEventArgs> ChangesSize;
+
+    /// <summary>
+    /// Get ALL Teams in the game.
+    /// </summary>
+    public static IEnumerable<Team> GetAllTeams()
     {
-      Name = name;
-      All.Add(this);
+      foreach (var team in _allTeams)
+      {
+        yield return team;
+      }
+    }
+
+    public Team()
+    {
+      _allTeams.Add(this);
     }
 
     /// <summary>
@@ -18,38 +39,6 @@ namespace War3Macro.Teams
     /// <param name="name"></param>
     /// <returns></returns>
     public static Team ByName(string name)
-    {
-      throw new NotImplementedException();
-    }
-
-    internal bool ContainsPlayer(War3Api.Common.player player)
-    {
-      throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// A complete set of ALL Teams.
-    /// </summary>
-    public static HashSet<Team> All { get; } = new();
-
-    public EventHandler<TeamEventArgs> ChangesSize;
-
-    public string Name { get; }
-
-    /// <summary>
-    /// A set of all Factions in this Team.
-    /// </summary>
-    public HashSet<Faction> Factions
-    {
-      get;
-    }
-
-    /// <summary>
-    /// Checks whether or not a faction would have too much weight to join this team.
-    /// </summary>
-    /// <param name="joinerFaction"></param>
-    /// <returns></returns>
-    public bool CanFitFaction(Faction joinerFaction)
     {
       throw new NotImplementedException();
     }
@@ -80,6 +69,45 @@ namespace War3Macro.Teams
     public void InviteFaction(object joinerFaction)
     {
       throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Add a Faction to this Team.
+    /// </summary>
+    /// <param name="faction"></param>
+    public void AddFaction(Faction faction)
+    {
+
+    }
+
+    /// <summary>
+    /// Remove a Faction from this Team.
+    /// </summary>
+    /// <param name="faction"></param>
+    public void RemoveFaction(Faction faction)
+    {
+
+    }
+
+    /// <summary>
+    /// Whether or not the given Faction is part of this Team.
+    /// </summary>
+    /// <param name="faction"></param>
+    public bool ContainsFaction(Faction faction)
+    {
+
+    }
+
+    /// <summary>
+    /// Returns all Factions in this Team.
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerable<Faction> GetFactions()
+    {
+      foreach (var faction in _factions)
+      {
+        yield return faction;
+      }
     }
   }
 }

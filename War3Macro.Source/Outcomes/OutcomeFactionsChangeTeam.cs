@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Text;
-using War3Macro.Factions;
+using War3Macro.Source.Factions;
 using War3Macro.Teams;
 
 namespace War3Macro.Outcomes

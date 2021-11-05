@@ -1,7 +1,7 @@
 ﻿using WCSharp.Shared.Extensions;
 using static War3Api.Common;
 using static War3Api.Blizzard;
-using War3Macro.Factions;
+using War3Macro.Source.Factions;
 
 namespace War3Macro.Source.Commands
 {
