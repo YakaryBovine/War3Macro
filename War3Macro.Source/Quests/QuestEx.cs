@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using War3Macro.Objectives;
+using War3Macro.Source.Objectives;
 
 namespace War3Macro.Source.Quests
 {

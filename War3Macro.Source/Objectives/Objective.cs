@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using War3Macro.Source.Factions;
+using War3Macro.Source.Quests;
 
-namespace War3Macro.Objectives
+namespace War3Macro.Source.Objectives
 {
   /// <summary>
   /// A known objective that can be completed by a particular Faction.
@@ -49,7 +51,7 @@ namespace War3Macro.Objectives
     /// <summary>
     /// Verbal instructions as to how this objective can be completed.
     /// </summary>
-    public abstract string Description { get; protected set; }
+    public abstract string Description { get; }
 
     private static readonly List<Objective> _all = new();
   }

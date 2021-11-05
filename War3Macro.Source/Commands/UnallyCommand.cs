@@ -20,7 +20,8 @@ namespace War3Macro.Source.Commands
           var targetTeam = Team.ByName(targetTeamName);
           if (targetTeam == null)
           {
-            targetTeam = new Team(targetTeamName);
+            targetTeam = new Team();
+            targetTeam.Name = targetTeamName;
           }
           triggerFaction.Team = targetTeam;
         }

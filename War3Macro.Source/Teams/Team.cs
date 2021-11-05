@@ -13,7 +13,7 @@ namespace War3Macro.Teams
     private readonly List<Faction> _factions = new();
     private readonly List<Faction> _invitees = new();
 
-    public string Name { get; }
+    public string Name { get; set; }
 
     public EventHandler<TeamEventArgs> ChangesSize;
 
@@ -95,7 +95,7 @@ namespace War3Macro.Teams
     /// <param name="faction"></param>
     public bool ContainsFaction(Faction faction)
     {
-
+      return false;
     }
 
     /// <summary>

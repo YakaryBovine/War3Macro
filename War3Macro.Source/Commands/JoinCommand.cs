@@ -28,11 +28,6 @@ namespace War3Macro.Source.Commands
           return;
         }
 
-        if (!teamToJoin.CanFitFaction(joinerFaction))
-        {
-          DisplayTextToPlayer(triggerPlayer, 0, 0, "That team is already full.");
-        }
-
         joinerFaction.Team = teamToJoin;
       }
       );

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using War3Macro.Common.Constants;
 using static War3Api.Common;
-using static War3Api.Blizzard;
 
 namespace War3Macro.Libraries
 {
@@ -70,7 +65,7 @@ namespace War3Macro.Libraries
       {
         if (_unit != null)
         {
-          UnitUtils.UnitDropAllItems(_unit);
+          //UnitUtils.UnitDropAllItems(_unit);
           RemoveUnit(_unit);
         }
         _unit = value;
@@ -116,7 +111,7 @@ namespace War3Macro.Libraries
           SetUnitState(newUnit, UNIT_STATE_LIFE, GetUnitState(_unit, UNIT_STATE_LIFE));
           SetUnitState(newUnit, UNIT_STATE_MANA, GetUnitState(_unit, UNIT_STATE_MANA));
           SetHeroXP(newUnit, GetHeroXP(_unit), false);
-          UnitUtils.UnitTransferItems(_unit, newUnit);
+          //UnitUtils.UnitTransferItems(_unit, newUnit);
           RemoveUnit(_unit);
           _unit = newUnit;
           SetUnitPosition(_unit, oldX, oldY);

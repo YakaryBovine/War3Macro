@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
-using War3Macro.Libraries;
+using War3Macro.Source.Quests;
 using static War3Api.Common;
 
-namespace War3Macro.Objectives
+namespace War3Macro.Source.Objectives
 {
   /// <summary>
   /// Kill a specific unit to complete this objective.
