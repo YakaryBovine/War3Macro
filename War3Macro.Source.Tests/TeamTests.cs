@@ -11,46 +11,55 @@ namespace War3Macro.Tests
     private const string _teamName = "Peasants";
     private Team _testTeam;
 
-    [TestInitialize]
-    public void Initialize()
-    {
-      _testTeam = new Team();
-      _testTeam.Name = _teamName;
-    }
-
     [TestMethod]
-    public void GetTeamByName()
+    public void ByName_Valid_ReturnsTeam()
     {
+      var newTeam = new Team();
+      newTeam.Name = "Peasants";
       var teamByName = Team.ByName(_teamName);
       Assert.IsNotNull(teamByName);
+      newTeam.Dispose();
     }
 
     [TestMethod]
-    public void AddFaction()
+    public void ByName_Invalid_ReturnsNull()
+    {
+      var teamByName = Team.ByName(_teamName);
+      Assert.IsNull(teamByName);
+    }
+
+    [TestMethod]
+    public void AddFaction_NotAlreadyAdded_True()
+    {
+      var team = new Team();
+      var faction = new Faction();
+      Assert.IsTrue(team.AddFaction(faction));
+    }
+
+    [TestMethod]
+    public void AddFaction_AlreadyAdded_False()
     {
       var team = new Team();
       var faction = new Faction();
       team.AddFaction(faction);
-      Assert.IsTrue(team.ContainsFaction(faction));
+      Assert.IsFalse(team.AddFaction(faction));
     }
 
     [TestMethod]
-    public void AddFaction_AlreadyAdded_NoException()
+    public void RemoveFaction_WasPresent_True()
     {
       var team = new Team();
       var faction = new Faction();
       team.AddFaction(faction);
-      team.AddFaction(faction);
+      Assert.IsTrue(team.RemoveFaction(faction));
     }
 
     [TestMethod]
-    public void RemoveFaction()
+    public void RemoveFaction_WasNotPresent_False()
     {
       var team = new Team();
       var faction = new Faction();
-      team.AddFaction(faction);
-      team.RemoveFaction(faction);
-      Assert.IsFalse(team.ContainsFaction(faction));
+      Assert.IsFalse(team.RemoveFaction(faction));
     }
 
     [TestMethod]
@@ -73,7 +82,7 @@ namespace War3Macro.Tests
     }
 
     [TestMethod]
-    public void AllTeams()
+    public void AllTeams_NewTeam_ContainsNewTeam()
     {
       var team = new Team();
       Assert.IsTrue(Team.GetAllTeams().ToList().Contains(team));
