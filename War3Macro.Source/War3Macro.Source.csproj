@@ -8,4 +8,8 @@
     <PackageReference Include="WCSharp.Events" Version="2.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Teams\" />
+  </ItemGroup>
+
 </Project>

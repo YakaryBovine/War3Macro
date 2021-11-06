@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using static War3Api.Common;
 using static War3Api.Blizzard;
-using War3Macro.Teams;
 using War3Macro.Source.Quests;
 
 namespace War3Macro.Source.Factions
@@ -14,17 +13,11 @@ namespace War3Macro.Source.Factions
   public class Faction
   {
     private double _excessGold = 0;
-    private Team _team;
     private double _income = 0;
-    private int _weight;
-    private string _name;
-    private string _icon;
     private static readonly HashSet<Faction> _all = new();
     private Dictionary<int, int> _objectLimits = new();
     private Dictionary<int, int> _objectLevels = new();
     private readonly List<QuestEx> _quests = new();
-
-    public static int UNLIMITED { get; } = 200;
 
     public event EventHandler<FactionTeamChangedEventArgs> TeamChanged;
     public event EventHandler<FactionEventArgs> ChangesPerson;
@@ -36,33 +29,7 @@ namespace War3Macro.Source.Factions
     public event EventHandler<FactionEventArgs> IconChanged;
     public static event EventHandler<FactionEventArgs> FactionCreated;
 
-    /// <summary>
-    /// Returns the Faction being controlled by this player.
-    /// </summary>
-    /// <param name="whichPlayer"></param>
-    /// <returns></returns>
-    public static Faction ByPlayerHandle(player whichPlayer)
-    {
-      throw new NotImplementedException();
-    }
-    /// <summary>
-    /// Returns the faction with this name.
-    /// </summary>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static Faction ByName(string name)
-    {
-      throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// A list of all Factions in the game.
-    /// </summary>
-    /// <returns></returns>
-    public static List<Faction> GetAll()
-    {
-      return new List<Faction>(_all);
-    }
+    public List<QuestEx> Quests { get; internal set; }
 
     /// <summary>
     /// A research that is enabled for all players whenever this Faction is occupied.
@@ -70,7 +37,7 @@ namespace War3Macro.Source.Factions
     public int PresenceResearch
     {
       get;
-      set;
+      internal set;
     }
 
     /// <summary>
@@ -79,7 +46,7 @@ namespace War3Macro.Source.Factions
     public int AbsenceResearch
     {
       get;
-      set;
+      internal set;
     }
 
     /// <summary>
@@ -97,22 +64,6 @@ namespace War3Macro.Source.Factions
         int truncatedGold = (int)Math.Truncate(newTotalGold);
         _excessGold = 1 - truncatedGold;
         SetPlayerState(Player, PLAYER_STATE_RESOURCE_GOLD, truncatedGold);
-      }
-    }
-
-    /// <summary>
-    /// An estimation of this faction's techtree strength.
-    /// </summary>
-    public int Weight
-    {
-      get
-      {
-        return _weight;
-      }
-      set
-      {
-        _weight = value;
-        WeightChanged?.Invoke(this, new FactionEventArgs(this));
       }
     }
 
@@ -136,72 +87,32 @@ namespace War3Macro.Source.Factions
     /// <summary>
     /// Which Team this Faction currently belongs to. Determines a player's allies.
     /// </summary>
-    public Team Team
-    {
-      get
-      {
-        return _team;
-      }
-      set
-      {
-        _team = value;
-        TeamChanged?.Invoke(this, new FactionTeamChangedEventArgs());
-      }
-    }
+    public Team Team { get; internal set; }
 
     /// <summary>
     /// Faction's name that appears in user interface.
     /// </summary>
-    public string Name
-    {
-      get
-      {
-        return _name;
-      }
-      set
-      {
-        _name = value;
-        NameChanged?.Invoke(this, new FactionEventArgs(this));
-      }
-    }
+    public string Name { get; internal set; }
 
     /// <summary>
     /// The string that goes before the faction's name to color it.
     /// </summary>
-    public string PrefixColor
-    {
-      get;
-    }
+    public string PrefixColor { get; internal set; }
 
     /// <summary>
     /// Faction's name with a color prefix.
     /// </summary>
-    public string ColoredName
-    {
-      get
-      {
-        return PrefixColor + Name;
-      }
-    }
+    public string ColoredName { get => PrefixColor + Name; }
 
     /// <summary>
     /// The icon that renders on the multiboard.
     /// </summary>
-    public string Icon { 
-      get {
-        return _icon;
-      } 
-      set
-      {
-        _icon = value;
-        IconChanged?.Invoke(this, new FactionEventArgs(this));
-      }
-    }
+    public string Icon { get; internal set; }
     
     /// <summary>
     /// Number of Control Points this player has.
     /// </summary>
-    public int ControlPoints { get; private set; }
+    public int ControlPoints { get; internal set; }
 
     /// <summary>
     /// Player currently occupying this Faction.
@@ -232,40 +143,6 @@ namespace War3Macro.Source.Factions
       }
     }
     private player _player;
-
-    public void AddQuest(QuestEx quest)
-    {
-      _quests.Add(quest);
-    }
-
-    public void RemoveQuest(QuestEx quest)
-    {
-      _quests.Remove(quest);
-    }
-
-    /// <summary>
-    /// Quest that pops up for this Faction early on as an introduction.
-    /// </summary>
-    public QuestEx StartingQuest
-    {
-      get;
-      set;
-    }
-
-    /// <summary>
-    /// Music that plays when this team wins the game.
-    /// </summary>
-    public string VictoryMusic { get; set; }
-
-    /// <summary>
-    /// Whether or not this Faction can voluntarily change teams.
-    /// </summary>
-    public virtual bool CanVoluntarilyChangeTeams {
-      get
-      {
-        return true;
-      }
-    }
 
     /// <summary>
     /// The WC3 player color of this faction in-game.
@@ -327,25 +204,8 @@ namespace War3Macro.Source.Factions
       _objectLimits[obj] = limit;
     }
 
-    /// <summary>
-    /// Causes a Faction's player to lose all units and resources.
-    /// </summary>
-    public void Obliterate()
+    internal Faction()
     {
-      throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// Causes a Faction's player to distribute all units and resources amongst allies.
-    /// </summary>
-    public void Leave()
-    {
-      throw new NotImplementedException();
-    }
-
-    public Faction()
-    {
-      FactionCreated?.Invoke(this, new FactionEventArgs(this));
     }
   }
 }
